@@ -37,6 +37,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             rowIndex = 0
         }
 
+    //causes the collection view images to change automatically
         scrollingTimer = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(ViewController.startTimer(theTimer:)), userInfo: rowIndex, repeats: true)
 
         return cell
@@ -53,6 +54,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
 
+        // code for swiping left and right
         let leftSwipe = UISwipeGestureRecognizer(target: self, action: #selector(swipeAction(swipe:)))
         leftSwipe.direction = UISwipeGestureRecognizer.Direction.left
         self.view.addGestureRecognizer(leftSwipe)
@@ -64,11 +66,12 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
    
 }
 
+//used to swipe between view controllers
 extension UIViewController {
     @objc func swipeAction(swipe:UISwipeGestureRecognizer) {
         let myView = String(describing: self)
         print ("View name: \(myView)")
-        
+        // we had been trying to switch view controllers dependent on the direction of the swipe and the current VC the user was on, but couldn't figure it out
         switch (swipe.direction.rawValue, myView) {
         case (1,"fineDining.ViewController"):
             performSegue(withIdentifier: "goLeft", sender: self)

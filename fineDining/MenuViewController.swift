@@ -16,6 +16,8 @@ class MenuViewController: UIViewController {
 
     @IBOutlet weak var toggle: UISwitch!
     
+    //changes the menu from s to n using a switch
+    
     @IBAction func menuSwitch(_ sender: UISwitch) {
         if toggle.isOn {
             menuImage.image = UIImage(named: "sMenu")
