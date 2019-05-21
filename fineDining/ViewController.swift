@@ -69,13 +69,13 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
 //used to swipe between view controllers
 extension UIViewController {
     @objc func swipeAction(swipe:UISwipeGestureRecognizer) {
-        let myView = String(describing: self)
-        print ("View name: \(myView)")
+//        let myView = String(describing: self)
+//        print ("View name: \(myView)")
         // we had been trying to switch view controllers dependent on the direction of the swipe and the current VC the user was on, but couldn't figure it out
-        switch (swipe.direction.rawValue, myView) {
-        case (1,"fineDining.ViewController"):
+        switch swipe.direction.rawValue {
+        case (1):
             performSegue(withIdentifier: "goLeft", sender: self)
-        case (2, "fineDining.MenuViewController"):
+        case (2):
             performSegue(withIdentifier: "goRight", sender: self)
         default:
             break
