@@ -10,6 +10,8 @@ import UIKit
 
 class ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
 
+//Collection View https://www.youtube.com/watch?v=-Mgz9ip1RJo 
+    
     @IBOutlet weak var collectionView: UICollectionView!
 
     var scrollingTimer = Timer()
@@ -54,16 +56,23 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         let leftSwipe = UISwipeGestureRecognizer(target: self, action: #selector(swipeAction(swipe:)))
         leftSwipe.direction = UISwipeGestureRecognizer.Direction.left
         self.view.addGestureRecognizer(leftSwipe)
+        
+        let rightSwipe = UISwipeGestureRecognizer(target: self, action: #selector(swipeAction(swipe:)))
+        rightSwipe.direction = UISwipeGestureRecognizer.Direction.right
+        self.view.addGestureRecognizer(rightSwipe)
     }
    
 }
 
 extension UIViewController {
-    @objc func swipeAction(swipe:UISwipeGestureRecognizer){
-        switch swipe.direction.rawValue {
-        case 1:
+    @objc func swipeAction(swipe:UISwipeGestureRecognizer) {
+        let myView = String(describing: self)
+        print ("View name: \(myView)")
+        
+        switch (swipe.direction.rawValue, myView) {
+        case (1,"fineDining.ViewController"):
             performSegue(withIdentifier: "goLeft", sender: self)
-        case 2:
+        case (2, "fineDining.MenuViewController"):
             performSegue(withIdentifier: "goRight", sender: self)
         default:
             break
